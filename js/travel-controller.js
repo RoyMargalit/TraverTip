@@ -34,11 +34,6 @@ window.onload = () => {
         })
 }
 
-document.querySelector('.btn').addEventListener('click', (ev) => {
-    console.log('Aha!', ev.target);
-    panTo(35.6895, 139.6917);
-})
-
 
 export function initMap(lat = 32.0749831, lng = 34.9120554) {
 // function initMap(lat = 32.0749831, lng = 34.9120554) {
@@ -213,6 +208,12 @@ function _connectGoogleApi() {
 
 
 // document.querySelector('.my-loc-btn').addEventListener('click', (ev) => {
+//     console.log('Aha!', ev.target);
+//     panTo(35.6895, 139.6917);
+// })
+
+
+// document.querySelector('.btn').addEventListener('click', (ev) => {
 //     console.log('Aha!', ev.target);
 //     panTo(35.6895, 139.6917);
 // })
