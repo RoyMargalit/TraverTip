@@ -36,8 +36,9 @@ window.onload = () => {
 
 
 export function initMap(lat = 32.0749831, lng = 34.9120554) {
-// function initMap(lat = 32.0749831, lng = 34.9120554) {
+
     console.log('InitMap');
+   
     return _connectGoogleApi()
         .then(() => {
             console.log('google available');
@@ -58,7 +59,6 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
                 addPlace(name, myLatlng);
                 // gMap.setCenter(myLatlng);
             });
-
             renderPlace()
            
         })
@@ -121,6 +121,11 @@ elMyLocationBtn.addEventListener('click', () => onSearchLoc())
 function showLocation(position) {
     console.log(position);
     gMap.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+    console.log(position.coords.latitude, position.coords.longitude);
+    // var strlocation = `https://roymargalit.github.io/TraverTip/index.html?lat=${position.coords.latitude}&lng=${position.coords.longitude}`
+    var strlocation = 'https://roymargalit.github.io/TraverTip/index.html?lat=29.561064&lng=34.950039'
+    // 
+    console.log(strlocation);
 }
 
 
@@ -151,7 +156,7 @@ function onSearchLoc() {
 }
 
 
-export function onGoTOPlace(placeId){
+export function onGoToPlace(placeId){
     var place = gPlaces.find(function (place) {
         return placeId === place.id
     })
@@ -177,10 +182,14 @@ function addMarker(loc) {
     return marker;
 }
 
+
+
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng);
     gMap.panTo(laLatLng);
 }
+
+
 
 function getPosition() {
     console.log('Getting Pos');
@@ -205,6 +214,17 @@ function _connectGoogleApi() {
     })
 }
 
+
+// https://roymargalit.github.io/TraverTip/index.html?lat=3.14&lng=1.63
+
+// new URLSearchParams('lat=3.14&lng=1.63').toString())
+// new URLSearchParams('lat=b&c=d').get('a'))
+
+
+// console.log(new URLSearchParams('a=b&c=d').toString()); // a=b&c=d
+// console.log(new URLSearchParams('a=b&c=d').get('a')); // b
+// console.log(new URLSearchParams('filters[a]=b&filters[c]=d').toString()); // filters%5Ba%5D=b&filters%5Bc%5D=d
+// console.log(new URLSearchParams('filters[a]=b&filters[c]=d').get('filters')); // null
 
 
 // document.querySelector('.my-loc-btn').addEventListener('click', (ev) => {
