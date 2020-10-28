@@ -1,3 +1,58 @@
 *{
     box-sizing: border-box;
 }
+html,
+body{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(219, 213, 207);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+}
+h1{
+    text-align: center;
+}
+label{
+    font-size: 1.2rem;
+    padding: 5px;
+}
+.map-container{
+    align-self: center;
+    height: 40%;
+    position: flex;
+    border: 2px dotted #292929;
+    /* margin :5px; */
+}
+#map{
+    height: 100%;
+    width: 100%;
+}
+input{
+    padding: 5px;
+    margin :5px;
+}
+button{
+    background-color: rgb(197, 196, 196);
+    color: rgb(51, 56, 56);
+    padding: 6px;
+    margin: 2px;
+    /* width: 40px; */
+}
+button:hover{
+    color: rgb(204, 230, 231);
+    background-color: rgb(121, 127, 128);
+    cursor: pointer;
+}
+
+table{
+    background-color: cornsilk;
+}
+td{
+    background-color: rgb(201, 240, 241);
+}
+
+/* .container{
+    max-width: 80%;
+    background-color: crimson;
+} */
