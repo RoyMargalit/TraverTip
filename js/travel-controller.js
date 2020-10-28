@@ -4,6 +4,10 @@ import { storageService } from '../service/storage-service.js'
 import { utilsService } from '../service/utils.js'
 
 
+
+window.onGoTOPlace = onGoTOPlace;
+window.onDeletePlace = onDeletePlace;
+
 var gMap;
 var gPlaces =[];
 const STORAGE_KEY = 'dBPlaces'
@@ -60,8 +64,8 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
                 // gMap.setCenter(myLatlng);
             });
 
+            renderPlace()
         })
-       
 }
 
 function addPlace(name, latlang) {
@@ -74,9 +78,15 @@ function addPlace(name, latlang) {
 }
 
 
+function onDeletePlace(placeId) {
+    mapService.deletePlace(placeId, gPlaces, STORAGE_KEY)
+    renderPlace()
+}
+
 
 function renderPlace() {
-    // gPlaces = getPlaces();
+    gPlaces = mapService.getPlaces(STORAGE_KEY, gPlaces);
+    console.log(gPlaces);
     var strHtml = ''
     gPlaces.forEach( function(place) {
        return strHtml += `<tr>
@@ -85,7 +95,7 @@ function renderPlace() {
         <td>${place.latlng.lat}</td>
         <td>${place.latlng.lng}</td>
         <td>${place.createdAT}</td>
-        <td><button onclick="onGoTOPlace('${place.id}')">Go</button></td>
+        <td><button data-id="${place.id}" onclick="onGoTOPlace('${place.id}')">Go</button></td>
         <td><button onclick="onDeletePlace('${place.id}')">X</button></td>
         </tr>`
     });
@@ -94,7 +104,14 @@ function renderPlace() {
 }
 
 
-function onGoTOPlace(placeId){
+// ().forEach 
+// addEventListener('click', () => {
+    
+// })
+
+
+
+export function onGoTOPlace(placeId){
     var place = gPlaces.find(function (place) {
         return placeId === place.id
     })
