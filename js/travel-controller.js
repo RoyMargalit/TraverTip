@@ -95,13 +95,44 @@ function renderPlace() {
         <td>${place.latlng.lat}</td>
         <td>${place.latlng.lng}</td>
         <td>${place.createdAT}</td>
-        <td><button data-id="${place.id}" onclick="onGoTOPlace('${place.id}')">Go</button></td>
-        <td><button onclick="onDeletePlace('${place.id}')">X</button></td>
+        <td><button id="go" class="go-btn" data-id="${place.id}" onclick="onGoTOPlace('${place.id}')">Go</button></td>
+        <td><button class="delete-btn" onclick="onDeletePlace('${place.id}')">X</button></td>
         </tr>`
     });
     var elTbody = document.querySelector('tbody')
     elTbody.innerHTML = strHtml;
 }
+    
+
+    
+    // renderPlace()
+    //     .then( console.log(document.querySelectorAll('button')))
+
+    setTimeout(() => {
+        console.log(document.querySelectorAll('button'));
+    }, 2000);
+     
+    // document.querySelectorAll('button');
+    // console.log(ff);
+
+
+// var ff = document.querySelector('button');
+// console.log(ff);
+
+
+
+
+
+// document.querySelector('button').addEventListener('click',(ev)=>{
+//     console.log(ev);
+//     // onGoTOPlace
+// })
+
+// ff.addEventListener ('click', () => {
+//     console.log('fffffff');
+//     // console.log(ev);
+// })
+
 
 
 // ().forEach 
@@ -115,7 +146,7 @@ export function onGoTOPlace(placeId){
     var place = gPlaces.find(function (place) {
         return placeId === place.id
     })
-    console.log(place.latlng);
+    // console.log(place.latlng);
     gMap.setCenter(new google.maps.LatLng(place.latlng.lat, place.latlng.lng))
 }
 
