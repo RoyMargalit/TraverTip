@@ -6,7 +6,7 @@ import { utilsService } from '../service/utils.js'
 
 
 // window.onGoTOPlace = onGoTOPlace;
-window.onDeletePlace = onDeletePlace;
+// window.onDeletePlace = onDeletePlace;
 
 var gMap;
 var gPlaces =[];
@@ -97,56 +97,63 @@ function renderPlace() {
         <td>${place.latlng.lng}</td>
         <td>${place.createdAT}</td>
         <td><button class="go-btn" data-id="${place.id}" >Go</button></td>
-        <td><button class="delete-btn" onclick="onDeletePlace('${place.id}')">X</button></td>
+        <td><button class="delete-btn" data-id"${place.id}" >X</button></td>
         </tr>`
     });
+
     var elTbody = document.querySelector('tbody')
     elTbody.innerHTML = strHtml;
-    var elBtns = document.querySelectorAll('.go-btn');
-    console.log(elBtns);
-    elBtns.forEach((btn) => {
+    var elGOBtns = document.querySelectorAll('.go-btn');
+    elGOBtns.forEach((btn) => {
         btn.addEventListener('click', () => onGoTOPlace(btn.dataset.id))
+    });
+    var elDeleteBtn = document.querySelectorAll('.delete-btn')
+    elDeleteBtn.forEach((btn) => {
+        btn.addEventListener('click', () => onDeletePlace(btn.dataset.id))
     })
 }
     
 
-{/* <td><button class="go-btn" data-id="${place.id}" onclick="onGoTOPlace('${place.id}')">Go</button></td>
-<td><button class="delete-btn" onclick="onDeletePlace('${place.id}')">X</button></td> */}
-    // renderPlace()
-    //     .then( console.log(document.querySelectorAll('button')))
-
-    // setTimeout(() => {
-    //     console.log(document.querySelectorAll('button'));
-    // }, 2000);
-     
-    // document.querySelectorAll('button');
-    // console.log(ff);
 
 
-// var ff = document.querySelector('button');
-// console.log(ff);
+var elMyLocationBtn = document.querySelector('.my-loc-btn');
+console.log(elMyLocationBtn);
+elMyLocationBtn.addEventListener('click', () => onSearchLoc())
 
 
 
 
-
-// document.querySelector('button').addEventListener('click',(ev)=>{
-//     console.log(ev);
-//     // onGoTOPlace
-// })
-
-// ff.addEventListener ('click', () => {
-//     console.log('fffffff');
-//     // console.log(ev);
-// })
+function showLocation(position) {
+    console.log(position);
+    gMap.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+}
 
 
+function handleLocationError(error) {
+    var locationError = document.getElementById("locationError");
 
-// ().forEach 
-// addEventListener('click', () => {
-    
-// })
+    switch (error.code) {
+        case 0:
+            locationError.innerHTML = "There was an error while retrieving your location: " + error.message;
+            break;
+        case 1:
+            locationError.innerHTML = "The user didn't allow this page to retrieve a location.";
+            break;
+        case 2:
+            locationError.innerHTML = "The browser was unable to determine your location: " + error.message;
+            break;
+        case 3:
+            locationError.innerHTML = "The browser timed out before retrieving the location.";
+            break;
+    }
+}
 
+
+function onSearchLoc() {
+    if (!navigator.geolocation) return ('HTML5 Geolocation is not supported in your browser.');
+
+    navigator.geolocation.getCurrentPosition(showLocation, handleLocationError);
+}
 
 
 export function onGoTOPlace(placeId){
@@ -205,3 +212,7 @@ function _connectGoogleApi() {
 
 
 
+// document.querySelector('.my-loc-btn').addEventListener('click', (ev) => {
+//     console.log('Aha!', ev.target);
+//     panTo(35.6895, 139.6917);
+// })
