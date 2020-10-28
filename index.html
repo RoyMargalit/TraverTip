@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>travel tip</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
-    <h1>Travel Tip</h1>
-    <div id="map" style="width: 400px; height: 400px;"></div>
-    <button class="btn">Click Me</button>
-    <input type="text">
-    <button>Go</button>
-    <button  class="my-loc-btn" data-id="my-loc-btn">My Location</button>
-    <div>
-        <h3 class="location" >Location:<span></span></h3>
-        <button >Copy Location</button>
-    </div>
-    <div>
-     
-    <table>
-        <tbody>
 
-        </tbody>
-    </table>
-       
-</div>
+<body>
+        <h1>Travel Tip</h1>
+        <label for="input-location">Input location:</label>
+        <input name="input-location" type="text" placeholder="Enter a location">
+        <button>Go</button>
+        <div class="map-container">
+            <div id="map" class="map"></div>
+        </div>
+        <!-- <button class="btn">Click Me</button> -->
+        <button  class="my-loc-btn" data-id="my-loc-btn">FIND My Location</button>
+        <div>
+            <h3 class="location">Location:<span></span></h3>
+            <button>Copy Location</button>
+        </div>
+        <div>
+            <table>
+                <tbody>
+
+                </tbody>
+            </table>
+
+        </div>
     <script type="module" src="js/travel-controller.js"></script>
 </body>
+
 </html>
