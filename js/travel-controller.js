@@ -123,8 +123,7 @@ function showLocation(position) {
     gMap.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
     console.log(position.coords.latitude, position.coords.longitude);
     // var strlocation = `https://roymargalit.github.io/TraverTip/index.html?lat=${position.coords.latitude}&lng=${position.coords.longitude}`
-    var strlocation = 'https://roymargalit.github.io/TraverTip/index.html?lat=29.561064&lng=34.950039'
-    // 
+    // var strlocation = 'https://roymargalit.github.io/TraverTip/index.html?lat=29.561064&lng=34.950039'
     console.log(strlocation);
 }
 
