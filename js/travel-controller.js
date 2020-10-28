@@ -5,7 +5,7 @@ import { utilsService } from '../service/utils.js'
 
 
 
-window.onGoTOPlace = onGoTOPlace;
+// window.onGoTOPlace = onGoTOPlace;
 window.onDeletePlace = onDeletePlace;
 
 var gMap;
@@ -65,6 +65,7 @@ export function initMap(lat = 32.0749831, lng = 34.9120554) {
             });
 
             renderPlace()
+           
         })
 }
 
@@ -95,22 +96,28 @@ function renderPlace() {
         <td>${place.latlng.lat}</td>
         <td>${place.latlng.lng}</td>
         <td>${place.createdAT}</td>
-        <td><button id="go" class="go-btn" data-id="${place.id}" onclick="onGoTOPlace('${place.id}')">Go</button></td>
+        <td><button class="go-btn" data-id="${place.id}" >Go</button></td>
         <td><button class="delete-btn" onclick="onDeletePlace('${place.id}')">X</button></td>
         </tr>`
     });
     var elTbody = document.querySelector('tbody')
     elTbody.innerHTML = strHtml;
+    var elBtns = document.querySelectorAll('.go-btn');
+    console.log(elBtns);
+    elBtns.forEach((btn) => {
+        btn.addEventListener('click', () => onGoTOPlace(btn.dataset.id))
+    })
 }
     
 
-    
+{/* <td><button class="go-btn" data-id="${place.id}" onclick="onGoTOPlace('${place.id}')">Go</button></td>
+<td><button class="delete-btn" onclick="onDeletePlace('${place.id}')">X</button></td> */}
     // renderPlace()
     //     .then( console.log(document.querySelectorAll('button')))
 
-    setTimeout(() => {
-        console.log(document.querySelectorAll('button'));
-    }, 2000);
+    // setTimeout(() => {
+    //     console.log(document.querySelectorAll('button'));
+    // }, 2000);
      
     // document.querySelectorAll('button');
     // console.log(ff);
